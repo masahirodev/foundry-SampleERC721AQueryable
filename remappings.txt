@@ -1,0 +1,6 @@
+@thirdweb/=lib/contracts/contracts/
+@openzeppelin/=lib/openzeppelin-contracts/
+erc721a/=lib/ERC721A/
+operator-filter-registry/=lib/operator-filter-registry/src/
+contracts/=src/
+@murky/=lib/murky/

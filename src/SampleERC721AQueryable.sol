@@ -109,9 +109,10 @@ contract SampleERC721AQueryable is Ownable, ERC721AQueryable, ERC2981, DefaultOp
         uint256 _mintedInfo = ERC721A._getAux(msg.sender);
 
         uint256 _mintedAmount = _mintedInfo & ((1 << 16) - 1);
-        if (_mintedInfo >> 16 & (1 << 8) - 1 == salePhase) {
-            require(_mintedAmount + _mintAmount < _maxMintAmount + 1, "Over the limit");
+        if (_mintedInfo >> 16 & (1 << 8) - 1 != salePhase) {
+            _mintedAmount = 0;
         }
+        require(_mintedAmount + _mintAmount < _maxMintAmount + 1, "Over the limit");
         uint256 newMintedInfo = (uint256(salePhase) << 16) | (_mintAmount + _mintedAmount);
 
         ERC721A._setAux(msg.sender, uint64(newMintedInfo));
